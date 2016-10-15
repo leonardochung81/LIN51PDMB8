@@ -1,9 +1,9 @@
 package com.example.hl.swa
 
-import android.support.v7.app.AppCompatActivity
+import android.app.ListActivity
 import android.os.Bundle
 
-class SwaMainActivity : AppCompatActivity() {
+class SwaMainActivity : ListActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
