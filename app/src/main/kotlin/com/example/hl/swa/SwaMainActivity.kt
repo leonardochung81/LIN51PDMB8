@@ -1,16 +1,21 @@
 package com.example.hl.swa
 
-import android.app.ListActivity
 import android.content.Context
 import android.net.ConnectivityManager
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.util.Log
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 
-class SwaMainActivity : ListActivity() {
+class SwaMainActivity : AppCompatActivity() {
 
     // private ListView presentationListView;
 
     private val TAG = javaClass.simpleName
+
+    private val controller = ControllerSWA()
 
     var BASE_URL = "http://api.openweathermap.org/data/2.5/"
     var REQUEST_FORECAST = "forecast/"
@@ -60,6 +65,29 @@ class SwaMainActivity : ListActivity() {
 
             }
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        val id = item?.itemId
+
+        when (id) {
+            R.id.refreshButton -> {
+                //do REFRESH
+                return true
+            }
+
+            R.id.aboutButton -> {
+                //show ABOUT
+                return true
+            }
+        }
+
+        return super.onOptionsItemSelected(item)
     }
 
 
