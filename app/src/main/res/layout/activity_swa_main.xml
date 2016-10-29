@@ -82,112 +82,97 @@
         android:layout_below="@+id/weatherIcon"
         android:layout_alignStart="@+id/city" />
 
-    <EditText
+    <TextView
+        android:text="TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="textPersonName"
+        android:layout_alignTop="@+id/labelPressure"
+        android:layout_alignStart="@+id/date"
+        android:id="@+id/pressurre" />
+
+    <TextView
         android:text="Humidity"
-        android:ems="10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/pressure"
-        android:layout_alignParentStart="true"
+        android:layout_alignEnd="@+id/labelPressure"
+        android:layout_marginTop="23dp"
+        android:id="@+id/labelHumidity" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/labelHumidity"
+        android:layout_alignStart="@+id/pressurre"
+        android:id="@+id/humidity" />
+
+    <TextView
+        android:text="Wind"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/labelHumidity"
+        android:layout_alignStart="@+id/labelHumidity"
         android:layout_marginTop="25dp"
-        android:id="@+id/editText"
-        android:textSize="12sp"
-        android:layout_toStartOf="@+id/humidity" />
+        android:id="@+id/labelWind" />
 
     <TextView
         android:text="TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/humidity"
-        android:layout_alignBaseline="@+id/editText"
-        android:layout_alignBottom="@+id/editText"
-        android:layout_alignStart="@+id/date" />
+        android:layout_alignTop="@+id/labelWind"
+        android:layout_alignEnd="@+id/humidity"
+        android:id="@+id/wind" />
+
+    <TextView
+        android:text="Sunrise"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/labelWind"
+        android:layout_alignStart="@+id/labelWind"
+        android:layout_marginTop="28dp"
+        android:id="@+id/labelSunrise" />
 
     <TextView
         android:text="TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_alignTop="@+id/labelSunrise"
+        android:layout_alignEnd="@+id/wind"
+        android:id="@+id/sunrise" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/labelSunset"
+        android:layout_alignStart="@+id/sunrise"
+        android:id="@+id/sunset" />
+
+    <TextView
+        android:text="Sunset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="21dp"
+        android:id="@+id/labelSunset"
+        android:layout_below="@+id/labelSunrise"
+        android:layout_alignEnd="@+id/labelSunrise" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="62dp"
         android:id="@+id/pressure"
         android:layout_below="@+id/maxTemp"
-        android:layout_toEndOf="@+id/editText" />
+        android:layout_alignStart="@+id/humidity" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
+    <TextView
         android:text="Pressure"
-        android:ems="10"
-        android:id="@+id/editText2"
-        android:layout_alignBaseline="@+id/pressure"
-        android:layout_alignBottom="@+id/pressure"
-        android:layout_alignParentStart="true"
-        android:layout_toStartOf="@+id/pressure"
-        android:textSize="12sp" />
-
-    <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:text="Wind"
-        android:ems="10"
-        android:layout_marginTop="22dp"
-        android:id="@+id/editText3"
-        android:textSize="12sp"
-        android:layout_below="@+id/editText"
-        android:layout_alignParentStart="true"
-        android:layout_toStartOf="@+id/wind" />
+        android:layout_alignTop="@+id/pressure"
+        android:layout_alignEnd="@+id/weatherIcon"
+        android:id="@+id/labelPressure" />
 
-    <TextView
-        android:text="TextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/wind"
-        android:layout_alignBaseline="@+id/editText3"
-        android:layout_alignBottom="@+id/editText3"
-        android:layout_toEndOf="@+id/editText" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:text="Sunrise"
-        android:ems="10"
-        android:layout_below="@+id/editText3"
-        android:layout_alignParentStart="true"
-        android:id="@+id/editText4"
-        android:layout_toStartOf="@+id/sunrise"
-        android:textSize="12sp" />
-
-    <TextView
-        android:text="TextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/sunrise"
-        android:layout_alignBaseline="@+id/editText4"
-        android:layout_alignBottom="@+id/editText4"
-        android:layout_toEndOf="@+id/editText3" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:text="Sunset"
-        android:ems="10"
-        android:layout_below="@+id/editText4"
-        android:layout_alignParentStart="true"
-        android:id="@+id/editText5"
-        android:textSize="12sp"
-        android:layout_toStartOf="@+id/sunset" />
-
-    <TextView
-        android:text="TextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/sunset"
-        android:textSize="14sp"
-        android:layout_alignBaseline="@+id/editText5"
-        android:layout_alignBottom="@+id/editText5"
-        android:layout_toEndOf="@+id/editText4" />
 </RelativeLayout>
