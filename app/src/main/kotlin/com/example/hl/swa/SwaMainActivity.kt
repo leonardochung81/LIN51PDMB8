@@ -6,8 +6,8 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.Menu
-
 import android.view.MenuItem
+import kotlinx.android.synthetic.main.activity_swa_main.*
 
 class SwaMainActivity : AppCompatActivity() {
 
@@ -15,7 +15,7 @@ class SwaMainActivity : AppCompatActivity() {
 
     private val TAG = javaClass.simpleName
 
-    private val controller = ControllerSWA()
+    private val controller = ControllerSWA(javaClass.newInstance())
 
     var BASE_URL = "http://api.openweathermap.org/data/2.5/"
     var REQUEST_FORECAST = "forecast/"
@@ -35,12 +35,16 @@ class SwaMainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_swa_main)
 
         Log.v(TAG, createLogMessage("onStart"))
 
-
-        setContentView(R.layout.activity_swa_main)
-
+        // forecast BUTTON TODO
+        forecast!!.setOnClickListener {
+            println("forecast Button")
+            city!!.text = "Lisbon, PT"
+            controller.owmServerRequestWeatherByCityCode(CITY_ID_LISBON)
+        }
 
         if (savedInstanceState != null) {   // se tiver info no bundle
 
@@ -52,7 +56,8 @@ class SwaMainActivity : AppCompatActivity() {
             // ...
 
             if (isNetworkAvailable() /*&& passou1h?*/) {
-
+                Log.v(TAG, createLogMessage("makeRequest"))
+                //controller.owmServerRequestWeatherByCityCode(CITY_ID_LISBON)
 
 
             } else {    // verificar se há dados na estrutura
@@ -89,6 +94,9 @@ class SwaMainActivity : AppCompatActivity() {
 
         return super.onOptionsItemSelected(item)
     }
+
+
+
 
 
     /**********************************************

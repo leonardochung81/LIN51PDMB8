@@ -45,7 +45,11 @@
         android:layout_alignStart="@+id/city"
         android:layout_marginStart="37dp"
         android:layout_marginTop="38dp"
-        android:id="@+id/weatherIcon" />
+        android:id="@+id/weatherIcon"
+        android:maxHeight="100dp"
+        android:maxWidth="100dp"
+        android:minHeight="100dp"
+        android:minWidth="100dp"/>
 
     <TextView
         android:text="TextView"
