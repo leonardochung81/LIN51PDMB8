@@ -2,10 +2,7 @@ package com.example.hl.swa
 
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
-import com.android.volley.Request
-import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
-import org.json.JSONObject
 
 class ControllerSWA : AppCompatActivity {
 
@@ -26,32 +23,43 @@ class ControllerSWA : AppCompatActivity {
 
     var PARAM_LIMIT = "&cnt="
 
-//    var ctx = Nothing?
+//    val ctx : SwaMainActivity?
+//    val queue by lazy { Volley.newRequestQueue(this) }
 
 
-    constructor(swaContext: android.content.Context) {
-//        ctx = swaContext
+    constructor() {}
+
+    constructor(swaContext: SwaMainActivity) {
+         val ctx : SwaMainActivity? = swaContext
     }
 
     fun owmServerRequestWeatherByCityCode(cityCode: String) {
         // EXAMPLE: http://api.openweathermap.org/data/2.5/weather?id=2267057&units=metric&appid=2f0a62dfb82d212f34d7a42ab74ef2a6
         val url = BASE_URL + REQUEST_WEATHER + cityCode + PARAM_UNITS + UNIT_METRIC + PARAM_APPID + API_ID
 
+//        application.requestQueue.add(JsonObjectRequest(url, null,
+//                Response.Listener<JSONObject> { response ->
+//                    Log.v(TAG, createLogMessage("onResponse"))
+//                    println("onResponse: \n" + response.toString())
+//                    //                        val text
+//                },
+//                Response.ErrorListener { error ->
+//                    Log.v(TAG, createLogMessage("onErrorResponse"))
+//                    println("onErrorResponse: \n" + error.toString())
+//                })
+//        )
 
-//        val queue = Volley.newRequestQueue(ctx)
-
-        val jsObjRequest = JsonObjectRequest(Request.Method.GET, url, null,
-                Response.Listener<JSONObject> { response ->
+        application.requestQueue.add(JsonObjectRequest(url, null,
+                {
                     Log.v(TAG, createLogMessage("onResponse"))
-                    println("onResponse: \n" + response.toString())
-                    //                        val text
+//                    it
+//                    println("onResponse: \n" + response.toString())
                 },
-                Response.ErrorListener { error ->
+                {
                     Log.v(TAG, createLogMessage("onErrorResponse"))
-                    println("onErrorResponse: \n" + error.toString())
+//                    println("onResponse: \n" + response.toString())
                 })
-
-//        queue.add(jsObjRequest)
+        )
 
     }
 

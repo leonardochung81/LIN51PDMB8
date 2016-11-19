@@ -15,7 +15,7 @@ class çSwaMainActivity : AppCompatActivity() {
 
     private val TAG = javaClass.simpleName
 
-    private val controller = ControllerSWA(javaClass.newInstance())
+    private val controller = ControllerSWA(this)
 
     var BASE_URL = "http://api.openweathermap.org/data/2.5/"
     var REQUEST_FORECAST = "forecast/"
