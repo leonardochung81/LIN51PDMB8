@@ -11,7 +11,7 @@ class SuperWeatherApplicationApp : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        Log.d("Profs/App", "ProfsApp onCreate")
+        Log.d("SWAApp", "SuperWeatherApplicationApp onCreate")
     }
 }
 
