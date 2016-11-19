@@ -4,6 +4,8 @@ import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
+import kotlinx.android.synthetic.main.activity_swa_main.*
+import org.json.JSONObject
 
 class ControllerSWA(val ctx: SwaMainActivity?) : AppCompatActivity() {
     init {  }
@@ -31,7 +33,13 @@ class ControllerSWA(val ctx: SwaMainActivity?) : AppCompatActivity() {
 
         ctx!!.application.requestQueue.add(JsonObjectRequest(Request.Method.GET, url, null,
                 {
-                    Log.v(TAG, createLogMessage("onResponse"))
+                    val mainFromJO = it.get("main") as JSONObject
+
+                    currentTemp!!.text = mainFromJO["temp"] as CharSequence?
+                    minTemp!!.text = mainFromJO["temp_min"].toString()
+                    maxTemp!!.text = mainFromJO["temp_max"].toString()
+//                    val main = Main(mainFromJO["temp"])
+//                    Log.v(TAG, createLogMessage("onResponse"))
 //                    it
 //                    println("onResponse: \n" + response.toString())
                 },
