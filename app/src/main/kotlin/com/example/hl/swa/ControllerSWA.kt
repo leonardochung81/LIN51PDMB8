@@ -5,53 +5,31 @@ import android.util.Log
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
 
-class ControllerSWA : AppCompatActivity {
+class ControllerSWA(val ctx: SwaMainActivity?) : AppCompatActivity() {
+    init {  }
 
     private val TAG = javaClass.simpleName
 
-    var BASE_URL = "http://api.openweathermap.org/data/2.5/"
-    var REQUEST_FORECAST = "forecast?id="
-    var REQUEST_WEATHER = "weather?id="
+    val BASE_URL: String = "http://api.openweathermap.org/data/2.5/"
+    val REQUEST_FORECAST: String = "forecast?id="
+    val REQUEST_WEATHER: String = "weather?id="
 
-    var CITY_NAME_COUNTRY_CODE = "Lisbon,PT"
-    var CITY_ID_LISBON = "2267057"
+    val CITY_NAME_COUNTRY_CODE: String = "Lisbon,PT"
+    val CITY_ID_LISBON: String = "2267057"
 
-    var PARAM_APPID = "&appid="
-    var API_ID = "2f0a62dfb82d212f34d7a42ab74ef2a6"    // HUGO: bf3a879ca099380c10d7f454e7d540f6   LEO: 2f0a62dfb82d212f34d7a42ab74ef2a6
+    val PARAM_APPID: String = "&appid="
+    val API_ID: String = "2f0a62dfb82d212f34d7a42ab74ef2a6"    // HUGO: bf3a879ca099380c10d7f454e7d540f6   LEO: 2f0a62dfb82d212f34d7a42ab74ef2a6
 
-    var PARAM_UNITS = "&units="
-    var UNIT_METRIC = "metric"
+    val PARAM_UNITS: String = "&units="
+    val UNIT_METRIC: String = "metric"
 
-    var PARAM_LIMIT = "&cnt="
-
-//    val ctx : SwaMainActivity?
-//    val queue by lazy { Volley.newRequestQueue(this) }
-
-
-    constructor() {}
-
-    constructor(swaContext: SwaMainActivity) {
-         val ctx : SwaMainActivity? = swaContext
-    }
+    val PARAM_LIMIT: String = "&cnt="
 
     fun owmServerRequestWeatherByCityCode(cityCode: String) {
         // EXAMPLE: http://api.openweathermap.org/data/2.5/weather?id=2267057&units=metric&appid=2f0a62dfb82d212f34d7a42ab74ef2a6
-        //val url = BASE_URL + REQUEST_WEATHER + cityCode + PARAM_UNITS + UNIT_METRIC + PARAM_APPID + API_ID
-        val url = "http://api.openweathermap.org/data/2.5/weather?id=2267057&units=metric&appid=2f0a62dfb82d212f34d7a42ab74ef2a6"
+        val url = BASE_URL + REQUEST_WEATHER + cityCode +PARAM_UNITS + UNIT_METRIC + PARAM_APPID + API_ID
 
-//        application.requestQueue.add(JsonObjectRequest(url, null,
-//                Response.Listener<JSONObject> { response ->
-//                    Log.v(TAG, createLogMessage("onResponse"))
-//                    println("onResponse: \n" + response.toString())
-//                    //                        val text
-//                },
-//                Response.ErrorListener { error ->
-//                    Log.v(TAG, createLogMessage("onErrorResponse"))
-//                    println("onErrorResponse: \n" + error.toString())
-//                })
-//        )
-
-        application.requestQueue.add(JsonObjectRequest(Request.Method.GET,url, null,
+        ctx!!.application.requestQueue.add(JsonObjectRequest(Request.Method.GET, url, null,
                 {
                     Log.v(TAG, createLogMessage("onResponse"))
 //                    it

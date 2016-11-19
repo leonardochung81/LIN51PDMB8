@@ -17,20 +17,20 @@ class SwaMainActivity : AppCompatActivity() {
 
     private val controller = ControllerSWA(this)
 
-    var BASE_URL = "http://api.openweathermap.org/data/2.5/"
-    var REQUEST_FORECAST = "forecast/"
-    var REQUEST_WEATHER = "weather/"
+//    var BASE_URL = "http://api.openweathermap.org/data/2.5/"
+//    var REQUEST_FORECAST = "forecast/"
+//    var REQUEST_WEATHER = "weather/"
+//
+//    var CITY_NAME_COUNTRY_CODE = "Lisbon,PT"
+    val CITY_ID_LISBON: String = "2267057"
 
-    var CITY_NAME_COUNTRY_CODE = "Lisbon,PT"
-    var CITY_ID_LISBON = "2267057"
-
-    var PARAM_APPID = "&appid="
-    var API_ID = "2f0a62dfb82d212f34d7a42ab74ef2a6"    // HUGO: bf3a879ca099380c10d7f454e7d540f6   LEO: 2f0a62dfb82d212f34d7a42ab74ef2a6
-
-    var PARAM_UNIT = "&unit="
-    var UNIT_METRIC = "metric"
-
-    var PARAM_LIMIT = "&cnt="
+//    var PARAM_APPID = "&appid="
+//    var API_ID = "2f0a62dfb82d212f34d7a42ab74ef2a6"    // HUGO: bf3a879ca099380c10d7f454e7d540f6   LEO: 2f0a62dfb82d212f34d7a42ab74ef2a6
+//
+//    var PARAM_UNITS = "&units="
+//    var UNIT_METRIC = "metric"
+//
+//    var PARAM_LIMIT = "&cnt="
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
