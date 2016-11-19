@@ -5,7 +5,7 @@ import android.util.Log
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.Volley
 
-class SuperWeatherApplicationApp : Application() {
+class SuperWeatherApplicationApp() : Application() {
 
     val reqQueue by lazy { Volley.newRequestQueue(this) }
 

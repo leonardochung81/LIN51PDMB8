@@ -2,6 +2,7 @@ package com.example.hl.swa
 
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
+import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
 
 class ControllerSWA : AppCompatActivity {
@@ -35,7 +36,8 @@ class ControllerSWA : AppCompatActivity {
 
     fun owmServerRequestWeatherByCityCode(cityCode: String) {
         // EXAMPLE: http://api.openweathermap.org/data/2.5/weather?id=2267057&units=metric&appid=2f0a62dfb82d212f34d7a42ab74ef2a6
-        val url = BASE_URL + REQUEST_WEATHER + cityCode + PARAM_UNITS + UNIT_METRIC + PARAM_APPID + API_ID
+        //val url = BASE_URL + REQUEST_WEATHER + cityCode + PARAM_UNITS + UNIT_METRIC + PARAM_APPID + API_ID
+        val url = "http://api.openweathermap.org/data/2.5/weather?id=2267057&units=metric&appid=2f0a62dfb82d212f34d7a42ab74ef2a6"
 
 //        application.requestQueue.add(JsonObjectRequest(url, null,
 //                Response.Listener<JSONObject> { response ->
@@ -49,7 +51,7 @@ class ControllerSWA : AppCompatActivity {
 //                })
 //        )
 
-        application.requestQueue.add(JsonObjectRequest(url, null,
+        application.requestQueue.add(JsonObjectRequest(Request.Method.GET,url, null,
                 {
                     Log.v(TAG, createLogMessage("onResponse"))
 //                    it
