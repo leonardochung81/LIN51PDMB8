@@ -9,7 +9,7 @@ import android.view.Menu
 import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_swa_main.*
 
-class SwaMainActivity : AppCompatActivity() {
+class çSwaMainActivity : AppCompatActivity() {
 
     // private ListView presentationListView;
 
