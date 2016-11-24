@@ -42,7 +42,7 @@ class SwaMainActivity : AppCompatActivity() {
         // forecast BUTTON TODO
         forecast!!.setOnClickListener {
             println("forecast Button")
-            city!!.text = "Lisbon, PT"
+//            city!!.text = "Lisbon, PT"
             controller.owmServerRequestWeatherByCityCode(CITY_ID_LISBON)
         }
 

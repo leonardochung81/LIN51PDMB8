@@ -5,6 +5,7 @@ import android.util.Log
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
 import kotlinx.android.synthetic.main.activity_swa_main.*
+import org.json.JSONArray
 import org.json.JSONObject
 
 class ControllerSWA(val ctx: SwaMainActivity?) : AppCompatActivity() {
@@ -34,14 +35,60 @@ class ControllerSWA(val ctx: SwaMainActivity?) : AppCompatActivity() {
         ctx!!.application.requestQueue.add(JsonObjectRequest(Request.Method.GET, url, null,
                 {
                     val mainFromJO = it.get("main") as JSONObject
+                    val weatherFromJO = ((it.get("weather") as JSONArray)[0] as JSONObject)
+                    val windFromJO = it.get("wind") as JSONObject
+                    val sysFromJO = it.get("sys") as JSONObject
 
-                    currentTemp!!.text = mainFromJO["temp"] as CharSequence?
-                    minTemp!!.text = mainFromJO["temp_min"].toString()
-                    maxTemp!!.text = mainFromJO["temp_max"].toString()
-//                    val main = Main(mainFromJO["temp"])
-//                    Log.v(TAG, createLogMessage("onResponse"))
-//                    it
-//                    println("onResponse: \n" + response.toString())
+                    val mainObj = Main (
+                            mainFromJO["temp"] as Double?,
+                            (mainFromJO["pressure"] as Int).toDouble(),
+                            mainFromJO["humidity"] as Int,
+                            (mainFromJO["temp_min"] as Int).toDouble(),
+                            (mainFromJO["temp_max"] as Int).toDouble(),
+                            null /*mainFromJO["seaLevel"] as Double*/,
+                            null /*mainFromJO["grdLevel"] as Double*/)
+
+                    val weatherObj = Weather (
+                            weatherFromJO["id"] as Int,
+                            weatherFromJO["main"] as String,
+                            weatherFromJO["description"] as String,
+                            weatherFromJO["icon"] as String
+                    )
+
+                    val windObj = Wind (
+                            windFromJO["speed"] as Double?,
+                            (windFromJO["deg"] as Int).toDouble()
+                    )
+
+                    val sysObj = Sys (
+                            sysFromJO["type"] as Int,
+                            sysFromJO["id"] as Int,
+                            sysFromJO["message"] as Double?,
+                            sysFromJO["country"] as String,
+                            sysFromJO["sunrise"] as Long,
+                            sysFromJO["sunset"] as Long
+                    )
+
+                    val owmObj = OpenWeatherMapModel (
+                            it["base"] as String,
+                            it["visibility"] as Int,
+                            it["dt"] as Long,
+                            it["id"] as Int,
+                            it["name"] as String,
+                            it["cod"] as Int
+                    )
+
+                    ctx.city!!.text = owmObj.name + ", " + sysObj.country
+                    ctx.currentTemp!!.text = mainObj.temp.toString() + "º"
+                    ctx.minTemp!!.text = mainObj.tempMin.toString() + "º"
+                    ctx.maxTemp!!.text = mainObj.tempMax.toString() + "º"
+                    ctx.weatherDescription!!.text = weatherObj.description
+                    ctx.pressure!!.text = mainObj.pressure.toString() + "kPa"
+                    ctx.humidity!!.text = mainObj.humidity.toString() + "%"
+                    ctx.wind!!.text = windObj.speed.toString() + " - " + windObj.deg.toString()
+                    ctx.sunrise!!.text = sysObj.sunrise.toString()
+                    ctx.sunset!!.text = sysObj.sunset.toString()
+
                 },
                 {
                     Log.v(TAG, createLogMessage("onErrorResponse"))
