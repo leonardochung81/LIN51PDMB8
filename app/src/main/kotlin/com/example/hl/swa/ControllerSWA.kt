@@ -35,7 +35,7 @@ class ControllerSWA(val ctx: SwaMainActivity?) : AppCompatActivity() {
                 {
                     val mainFromJO = it.get("main") as JSONObject
 
-                    currentTemp!!.text = mainFromJO["temp"] as CharSequence?
+                    ctx!!.currentTemp!!.text = mainFromJO["temp"].toString()
                     minTemp!!.text = mainFromJO["temp_min"].toString()
                     maxTemp!!.text = mainFromJO["temp_max"].toString()
 //                    val main = Main(mainFromJO["temp"])
