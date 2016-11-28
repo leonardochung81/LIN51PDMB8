@@ -7,6 +7,10 @@ import com.android.volley.toolbox.JsonObjectRequest
 import kotlinx.android.synthetic.main.activity_swa_main.*
 import org.json.JSONArray
 import org.json.JSONObject
+import java.security.Timestamp
+import java.text.DateFormat
+import java.text.SimpleDateFormat
+import java.util.*
 
 class ControllerSWA(val ctx: SwaMainActivity?) : AppCompatActivity() {
     init {  }
@@ -40,7 +44,7 @@ class ControllerSWA(val ctx: SwaMainActivity?) : AppCompatActivity() {
                     val sysFromJO = it.get("sys") as JSONObject
 
                     val mainObj = Main (
-                            mainFromJO["temp"] as Double?,
+                            mainFromJO["temp"] as Double,
                             (mainFromJO["pressure"] as Int).toDouble(),
                             mainFromJO["humidity"] as Int,
                             (mainFromJO["temp_min"] as Int).toDouble(),
@@ -63,42 +67,39 @@ class ControllerSWA(val ctx: SwaMainActivity?) : AppCompatActivity() {
                     val sysObj = Sys (
                             sysFromJO["type"] as Int,
                             sysFromJO["id"] as Int,
-                            sysFromJO["message"] as Double?,
+                            sysFromJO["message"] as Double,
                             sysFromJO["country"] as String,
-                            sysFromJO["sunrise"] as Long,
-                            sysFromJO["sunset"] as Long
+                            sysFromJO["sunrise"] as Int,
+                            sysFromJO["sunset"] as Int
                     )
 
                     val owmObj = OpenWeatherMapModel (
                             it["base"] as String,
                             it["visibility"] as Int,
-                            it["dt"] as Long,
+                            it["dt"] as Int,
                             it["id"] as Int,
                             it["name"] as String,
                             it["cod"] as Int
                     )
 
                     ctx.city!!.text = owmObj.name + ", " + sysObj.country
+                    ctx.time!!.text = convertTime(owmObj.dt.toLong())      //owmObj.dt.toString()
                     ctx.currentTemp!!.text = mainObj.temp.toString() + "º"
                     ctx.minTemp!!.text = mainObj.tempMin.toString() + "º"
                     ctx.maxTemp!!.text = mainObj.tempMax.toString() + "º"
                     ctx.weatherDescription!!.text = weatherObj.description
-                    ctx.pressure!!.text = mainObj.pressure.toString() + "kPa"
-                    ctx.humidity!!.text = mainObj.humidity.toString() + "%"
-                    ctx.wind!!.text = windObj.speed.toString() + " - " + windObj.deg.toString()
-                    ctx.sunrise!!.text = sysObj.sunrise.toString()
-                    ctx.sunset!!.text = sysObj.sunset.toString()
-
+                    ctx.pressure!!.text = mainObj.pressure.toString() + " mBar"
+                    ctx.humidity!!.text = mainObj.humidity.toString() + " %"
+                    ctx.wind!!.text = windObj.speed.toString() + " km/h " + windObj.deg.toString()
+                    ctx.sunrise!!.text = convertTime(sysObj.sunrise.toLong())
+                    ctx.sunset!!.text = convertTime(sysObj.sunset.toLong())
                 },
                 {
                     Log.v(TAG, createLogMessage("onErrorResponse"))
 //                    println("onResponse: \n" + response.toString())
                 })
         )
-
     }
-
-
 
     /**
      * Helper method that produces a log message with the given method name and suffix.
@@ -117,6 +118,12 @@ class ControllerSWA(val ctx: SwaMainActivity?) : AppCompatActivity() {
      **/
     private fun createLogMessage(methodName: String): String {
         return createLogMessage(methodName, "")
+    }
+
+    fun convertTime(time: Long): String {
+        val date = Date(time*1000)
+        val format = SimpleDateFormat("yyyy MM dd HH:mm:ss")
+        return format.format(date)
     }
 
 }

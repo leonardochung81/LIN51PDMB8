@@ -84,11 +84,11 @@ class Coord {
 
 data class Main
 (
-        val temp: Double?,
-        val pressure: Double?,
+        val temp: Double,
+        val pressure: Double,
         val humidity: Int,
-        val tempMin: Double?,
-        val tempMax: Double?,
+        val tempMin: Double,
+        val tempMax: Double,
         val seaLevel: Double?,
         val grndLevel: Double?
 )
@@ -98,17 +98,17 @@ data class OpenWeatherMapModel
 (
 //    val coord: Coord?,
 //    val weather = Weather?,
-    val base: String?,
-    val visibility: Int?,
+    val base: String,
+    val visibility: Int,
 //    val main: Main?,
 //    val wind: Wind?,
 //    val rain: Rain?,
 //    val clouds: Clouds?,
-    val dt: Long?,
+    val dt: Int,
 //    val sys: Sys?,
-    val id: Int?,
-    val name: String?,
-    val cod: Int?
+    val id: Int,
+    val name: String,
+    val cod: Int
 )
 
 class Rain {
@@ -146,10 +146,10 @@ data class Sys
 (
     val type: Int,
     val id:  Int,
-    val message: Double?,
-    val country: String?,
-    val sunrise: Long?,
-    val sunset: Long?
+    val message: Double,
+    val country: String,
+    val sunrise: Int,
+    val sunset: Int
 )
 
 data class Weather

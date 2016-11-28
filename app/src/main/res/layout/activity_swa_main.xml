@@ -12,85 +12,14 @@
     tools:context="com.example.hl.swa.SwaMainActivity">
 
     <TextView
-        android:text="TextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="24dp"
-        android:id="@+id/city" />
-
-    <TextView
-        android:text="TextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_toEndOf="@+id/city"
-        android:layout_marginStart="38dp"
-        android:id="@+id/date" />
-
-    <Button
-        android:text="Button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="35dp"
-        android:id="@+id/forecast" />
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@android:color/background_dark"
-        android:layout_below="@+id/forecast"
-        android:layout_alignStart="@+id/city"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="38dp"
-        android:id="@+id/weatherIcon"
-        android:maxHeight="100dp"
-        android:maxWidth="100dp"
-        android:minHeight="100dp"
-        android:minWidth="100dp"/>
-
-    <TextView
-        android:text="34º"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/currentTemp"
-        android:width="77dp"
-        android:textSize="36sp"
-        android:layout_alignTop="@+id/weatherIcon"
-        android:layout_toEndOf="@+id/date"/>
-
-    <TextView
-        android:text="Clear"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/weatherDescription"
-        android:width="100dp"
-        android:textSize="18sp"
-        android:layout_below="@+id/weatherIcon"
-        android:layout_alignStart="@+id/city"
-        android:layout_marginTop="10dp"
-        android:layout_alignEnd="@+id/minTemp"
-        android:textAlignment="center"/>
-
-    <TextView
-        android:text="66.70 kPa"
+        android:text="66.70 hpa"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/pressure"
         android:layout_alignBaseline="@+id/labelPressure"
         android:layout_alignBottom="@+id/labelPressure"
         android:layout_toEndOf="@+id/city"
-        android:layout_marginStart="12dp"/>
-
-    <TextView
-        android:text="Pressure"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/labelPressure"
-        android:layout_centerVertical="true"
-        android:layout_alignStart="@+id/weatherDescription"/>
+        android:layout_marginStart="5dp"/>
 
     <TextView
         android:text="Humidity"
@@ -138,7 +67,7 @@
         android:layout_alignStart="@+id/pressure"/>
 
     <TextView
-        android:text="15"
+        android:text="15 km/h"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/wind"
@@ -165,33 +94,6 @@
         android:layout_alignStart="@+id/sunrise"/>
 
     <TextView
-        android:text="km/h"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/windSpeed"
-        android:layout_alignBaseline="@+id/wind"
-        android:layout_alignBottom="@+id/wind"
-        android:layout_alignEnd="@+id/sunrise"/>
-
-    <TextView
-        android:text="NO"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/windDirection"
-        android:layout_alignBaseline="@+id/windSpeed"
-        android:layout_alignBottom="@+id/windSpeed"
-        android:layout_toStartOf="@+id/currentTemp"/>
-
-    <TextView
-        android:text="35º"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/maxTemp"
-        android:width="25dp"
-        android:layout_below="@+id/currentTemp"
-        android:layout_alignStart="@+id/currentTemp"/>
-
-    <TextView
         android:text="/"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -205,8 +107,85 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/minTemp"
-        android:width="23dp"
+        android:width="35dp"
         android:layout_below="@+id/currentTemp"
         android:layout_toEndOf="@+id/textView6"/>
+
+    <TextView
+        android:text="Pressure"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/labelPressure"
+        android:layout_centerVertical="true"
+        android:layout_toStartOf="@+id/pressure" />
+
+    <TextView
+        android:text="Clear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/weatherDescription"
+        android:width="200dp"
+        android:textSize="14sp"
+        android:textAlignment="textStart"
+        android:layout_alignBottom="@+id/weatherIcon"
+        android:layout_toEndOf="@+id/wind" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:id="@+id/city"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/time"
+        android:layout_below="@+id/city"
+        android:layout_alignStart="@+id/city" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@android:color/background_dark"
+        android:layout_marginTop="38dp"
+        android:id="@+id/weatherIcon"
+        android:maxHeight="100dp"
+        android:maxWidth="100dp"
+        android:minHeight="100dp"
+        android:minWidth="100dp"
+        android:layout_below="@+id/forecast"
+        android:layout_alignStart="@+id/time" />
+
+    <Button
+        android:text="Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/forecast"
+        android:layout_alignBaseline="@+id/time"
+        android:layout_alignBottom="@+id/time"
+        android:layout_alignEnd="@+id/weatherDescription" />
+
+    <TextView
+        android:text="35º"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/maxTemp"
+        android:width="35dp"
+        android:layout_below="@+id/currentTemp"
+        android:layout_toEndOf="@+id/pressure" />
+
+    <TextView
+        android:text="34º"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/currentTemp"
+        android:width="100dp"
+        android:textSize="30sp"
+        android:layout_alignTop="@+id/weatherIcon"
+        android:layout_alignStart="@+id/maxTemp" />
 
 </RelativeLayout>
