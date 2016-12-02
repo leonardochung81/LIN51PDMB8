@@ -7,8 +7,6 @@ import com.android.volley.toolbox.JsonObjectRequest
 import kotlinx.android.synthetic.main.activity_swa_main.*
 import org.json.JSONArray
 import org.json.JSONObject
-import java.security.Timestamp
-import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -32,6 +30,8 @@ class ControllerSWA(val ctx: SwaMainActivity?) : AppCompatActivity() {
 
     val PARAM_LIMIT: String = "&cnt="
 
+    var owmWeather: OpenWeatherMapWeatherModel? = null
+
     fun owmServerRequestWeatherByCityCode(cityCode: String) {
         // EXAMPLE: http://api.openweathermap.org/data/2.5/weather?id=2267057&units=metric&appid=2f0a62dfb82d212f34d7a42ab74ef2a6
         val url = BASE_URL + REQUEST_WEATHER + cityCode +PARAM_UNITS + UNIT_METRIC + PARAM_APPID + API_ID
@@ -45,12 +45,13 @@ class ControllerSWA(val ctx: SwaMainActivity?) : AppCompatActivity() {
 
                     val mainObj = Main (
                             mainFromJO["temp"] as Double,
-                            (mainFromJO["pressure"] as Int).toDouble(),
+                            mainFromJO["pressure"] as Int, // (mainFromJO["pressure"] as Int).toDouble(),
                             mainFromJO["humidity"] as Int,
-                            (mainFromJO["temp_min"] as Int).toDouble(),
-                            (mainFromJO["temp_max"] as Int).toDouble(),
+                            mainFromJO["temp_min"] as Int, // (mainFromJO["temp_min"] as Int).toDouble(),
+                            mainFromJO["temp_max"] as Int, // (mainFromJO["temp_max"] as Int).toDouble()
                             null /*mainFromJO["seaLevel"] as Double*/,
-                            null /*mainFromJO["grdLevel"] as Double*/)
+                            null /*mainFromJO["grdLevel"] as Double*/
+                    )
 
                     val weatherObj = Weather (
                             weatherFromJO["id"] as Int,
@@ -60,8 +61,8 @@ class ControllerSWA(val ctx: SwaMainActivity?) : AppCompatActivity() {
                     )
 
                     val windObj = Wind (
-                            windFromJO["speed"] as Double?,
-                            (windFromJO["deg"] as Int).toDouble()
+                            windFromJO["speed"] as Double,
+                            windFromJO["deg"] as Int   // (windFromJO["deg"] as Int).toDouble()
                     )
 
                     val sysObj = Sys (
@@ -73,7 +74,7 @@ class ControllerSWA(val ctx: SwaMainActivity?) : AppCompatActivity() {
                             sysFromJO["sunset"] as Int
                     )
 
-                    val owmObj = OpenWeatherMapModel (
+                    owmWeather = OpenWeatherMapWeatherModel (
                             it["base"] as String,
                             it["visibility"] as Int,
                             it["dt"] as Int,
@@ -82,15 +83,15 @@ class ControllerSWA(val ctx: SwaMainActivity?) : AppCompatActivity() {
                             it["cod"] as Int
                     )
 
-                    ctx.city!!.text = owmObj.name + ", " + sysObj.country
-                    ctx.time!!.text = convertTime(owmObj.dt.toLong())      //owmObj.dt.toString()
+                    ctx.city!!.text = owmWeather!!.name + ", " + sysObj.country
+                    ctx.time!!.text = convertTime(owmWeather!!.dt.toLong())      //owmObj.dt.toString()
                     ctx.currentTemp!!.text = mainObj.temp.toString() + "º"
-                    ctx.minTemp!!.text = mainObj.tempMin.toString() + "º"
-                    ctx.maxTemp!!.text = mainObj.tempMax.toString() + "º"
+                    ctx.minTemp!!.text = mainObj.getTempMin().toString() + "º"
+                    ctx.maxTemp!!.text = mainObj.getTempMax().toString() + "º"
                     ctx.weatherDescription!!.text = weatherObj.description
-                    ctx.pressure!!.text = mainObj.pressure.toString() + " mBar"
+                    ctx.pressure!!.text = mainObj.getPressure().toString() + " mBar"
                     ctx.humidity!!.text = mainObj.humidity.toString() + " %"
-                    ctx.wind!!.text = windObj.speed.toString() + " km/h " + windObj.deg.toString()
+                    ctx.wind!!.text = windObj.speed.toString() + " km/h " + windObj.getDeg().toString()
                     ctx.sunrise!!.text = convertTime(sysObj.sunrise.toLong())
                     ctx.sunset!!.text = convertTime(sysObj.sunset.toLong())
                 },

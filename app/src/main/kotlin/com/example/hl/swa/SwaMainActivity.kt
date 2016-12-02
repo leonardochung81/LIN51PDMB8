@@ -40,8 +40,8 @@ class SwaMainActivity : AppCompatActivity() {
         Log.v(TAG, createLogMessage("onStart"))
 
         // forecast BUTTON TODO
-        forecast!!.setOnClickListener {
-            println("forecast Button")
+        forecastButton!!.setOnClickListener {
+//            println("forecast Button")
 //            city!!.text = "Lisbon, PT"
             controller.owmServerRequestWeatherByCityCode(CITY_ID_LISBON)
         }
@@ -56,8 +56,8 @@ class SwaMainActivity : AppCompatActivity() {
             // ...
 
             if (isNetworkAvailable() /*&& passou1h?*/) {
-                Log.v(TAG, createLogMessage("makeRequest"))
-                //controller.owmServerRequestWeatherByCityCode(CITY_ID_LISBON)
+//                Log.v(TAG, createLogMessage("makeRequest"))
+                controller.owmServerRequestWeatherByCityCode(CITY_ID_LISBON)
 
 
             } else {    // verificar se há dados na estrutura

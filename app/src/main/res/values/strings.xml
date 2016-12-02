@@ -2,4 +2,5 @@
     <string name="app_name">Super Weather Application</string>
     <string name="refresh_button">Refresh</string>
     <string name="about_button">About</string>
+    <string name="forecast_button">Forecast</string>
 </resources>
