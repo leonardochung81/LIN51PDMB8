@@ -1,21 +1,25 @@
 package com.example.hl.swa
 
+import android.graphics.Bitmap
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import com.android.volley.Request
+import com.android.volley.toolbox.ImageRequest
 import com.android.volley.toolbox.JsonObjectRequest
 import kotlinx.android.synthetic.main.activity_swa_main.*
 import org.json.JSONArray
 import org.json.JSONObject
+import java.text.DecimalFormat
 import java.text.SimpleDateFormat
 import java.util.*
 
 class ControllerSWA(val ctx: SwaMainActivity?) : AppCompatActivity() {
-    init {  }
+    init {    }
 
     private val TAG = javaClass.simpleName
 
     val BASE_URL: String = "http://api.openweathermap.org/data/2.5/"
+    val BASE_ICON_URL: String = "http://openweathermap.org/img/w/"
     val REQUEST_FORECAST: String = "forecast?id="
     val REQUEST_WEATHER: String = "weather?id="
 
@@ -31,6 +35,20 @@ class ControllerSWA(val ctx: SwaMainActivity?) : AppCompatActivity() {
     val PARAM_LIMIT: String = "&cnt="
 
     var owmWeather: OpenWeatherMapWeatherModel? = null
+
+    val cardinalDirection = arrayOf("N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE", "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW")
+
+    val iconCode = mapOf(
+            Pair("clear sky", "01"),
+            Pair("few clouds", "02"),
+            Pair("scattered clouds", "03"),
+            Pair("broken clouds", "04"),
+            Pair("shower rain", "09"),
+            Pair("rain", "10"),
+            Pair("thunderstorm", "11"),
+            Pair("snow", "13"),
+            Pair("mist", "50")
+    )
 
     fun owmServerRequestWeatherByCityCode(cityCode: String) {
         // EXAMPLE: http://api.openweathermap.org/data/2.5/weather?id=2267057&units=metric&appid=2f0a62dfb82d212f34d7a42ab74ef2a6
@@ -83,17 +101,19 @@ class ControllerSWA(val ctx: SwaMainActivity?) : AppCompatActivity() {
                             it["cod"] as Int
                     )
 
+                    owmServerRequestIconByDescription(weatherObj.icon)
+
                     ctx.city!!.text = owmWeather!!.name + ", " + sysObj.country
                     ctx.time!!.text = convertTime(owmWeather!!.dt.toLong())      //owmObj.dt.toString()
-                    ctx.currentTemp!!.text = mainObj.temp.toString() + "º"
-                    ctx.minTemp!!.text = mainObj.getTempMin().toString() + "º"
-                    ctx.maxTemp!!.text = mainObj.getTempMax().toString() + "º"
-                    ctx.weatherDescription!!.text = weatherObj.description
-                    ctx.pressure!!.text = mainObj.getPressure().toString() + " mBar"
-                    ctx.humidity!!.text = mainObj.humidity.toString() + " %"
-                    ctx.wind!!.text = windObj.speed.toString() + " km/h " + windObj.getDeg().toString()
-                    ctx.sunrise!!.text = convertTime(sysObj.sunrise.toLong())
-                    ctx.sunset!!.text = convertTime(sysObj.sunset.toLong())
+                    val temp = DecimalFormat("#.#")
+                    ctx.currentTemp!!.text = temp.format(mainObj.temp).toString() + " ºC"
+                    ctx.tempMaxMin!!.text =  mainObj.getTempMax().toString() + "º/" + mainObj.getTempMin() + "º"
+                    ctx.weatherDescription!!.text = weatherObj.main + ": " + weatherObj.description
+                    ctx.pressure!!.text = mainObj.getPressure().toString() + " hpa"    // " mBar"
+                    ctx.humidity!!.text = mainObj.humidity.toString() + "%"
+                    ctx.wind!!.text = windObj.speed.toString() + " km/h - " + degToCompass(windObj.getDeg() as Int) + " (" + windObj.getDeg().toString() + ")"
+                    ctx.sunrise!!.text = convertTime(sysObj.sunrise.toLong()).substring(11)
+                    ctx.sunset!!.text = convertTime(sysObj.sunset.toLong()).substring(11)
                 },
                 {
                     Log.v(TAG, createLogMessage("onErrorResponse"))
@@ -101,6 +121,28 @@ class ControllerSWA(val ctx: SwaMainActivity?) : AppCompatActivity() {
                 })
         )
     }
+
+
+    private fun owmServerRequestIconByDescription(iconId: String) {
+        // EXAMPLE: http://openweathermap.org/img/w/10d.png
+        val url = BASE_ICON_URL + iconId + ".png"
+
+        ctx!!.application.requestQueue.add(ImageRequest(url,
+                {
+                    ctx.weatherIcon.setImageBitmap(it as Bitmap)
+                }, 0, 0, null,
+                {
+                    println("onResponseError: owmServerRequestIconByCode()")
+                }
+        )
+        )
+    }
+
+    private fun degToCompass(deg: Int): String {
+        val point = ((deg / 22.5) + 0.5).toInt()
+        return cardinalDirection[(point % 16)]
+    }
+
 
     /**
      * Helper method that produces a log message with the given method name and suffix.
@@ -123,7 +165,7 @@ class ControllerSWA(val ctx: SwaMainActivity?) : AppCompatActivity() {
 
     fun convertTime(time: Long): String {
         val date = Date(time*1000)
-        val format = SimpleDateFormat("yyyy MM dd HH:mm:ss")
+        val format = SimpleDateFormat("yyyy/MM/dd HH:mm a")
         return format.format(date)
     }
 

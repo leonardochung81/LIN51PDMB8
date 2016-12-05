@@ -80,23 +80,6 @@
         android:layout_alignStart="@+id/sunrise"/>
 
     <TextView
-        android:text="/"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView6"
-        android:layout_below="@+id/currentTemp"
-        android:layout_toEndOf="@+id/maxTemp"
-        android:width="9dp"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/minTemp"
-        android:width="35dp"
-        android:layout_below="@+id/currentTemp"
-        android:layout_toEndOf="@+id/textView6"/>
-
-    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -154,20 +137,20 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/currentTemp"
+        android:id="@+id/tempMaxMin"
         android:width="100dp"
-        android:textSize="30sp"
-        android:layout_alignTop="@+id/weatherIcon"
-        android:layout_toEndOf="@+id/weatherIcon"/>
+        android:layout_below="@+id/currentTemp"
+        android:layout_toEndOf="@+id/weatherIcon"
+        android:layout_marginStart="14dp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/maxTemp"
-        android:width="35dp"
-        android:layout_alignBaseline="@+id/textView6"
-        android:layout_alignBottom="@+id/textView6"
-        android:layout_toEndOf="@+id/weatherIcon"/>
+        android:id="@+id/currentTemp"
+        android:width="100dp"
+        android:textSize="30sp"
+        android:layout_alignTop="@+id/weatherIcon"
+        android:layout_alignStart="@+id/tempMaxMin"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -177,6 +160,6 @@
         android:textSize="14sp"
         android:textAlignment="textStart"
         android:layout_alignBottom="@+id/weatherIcon"
-        android:layout_toEndOf="@+id/weatherIcon"/>
+        android:layout_alignStart="@+id/tempMaxMin"/>
 
 </RelativeLayout>

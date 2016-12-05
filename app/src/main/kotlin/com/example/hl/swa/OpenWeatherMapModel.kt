@@ -112,7 +112,7 @@ data class Weather
     val id: Int,
     val main: String,
     val description: String,
-    val icon: String?
+    val icon: String
 )
 
 data class Wind (val speed: Double) {   //    val deg: Double?
