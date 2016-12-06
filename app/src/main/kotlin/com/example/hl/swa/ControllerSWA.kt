@@ -20,7 +20,7 @@ class ControllerSWA(val ctx: SwaMainActivity?) : AppCompatActivity() {
 
     val BASE_URL: String = "http://api.openweathermap.org/data/2.5/"
     val BASE_ICON_URL: String = "http://openweathermap.org/img/w/"
-    val REQUEST_FORECAST: String = "forecast?id="
+    val REQUEST_FORECAST: String = "forecast/daily?id="
     val REQUEST_WEATHER: String = "weather?id="
 
     val CITY_NAME_COUNTRY_CODE: String = "Lisbon,PT"
