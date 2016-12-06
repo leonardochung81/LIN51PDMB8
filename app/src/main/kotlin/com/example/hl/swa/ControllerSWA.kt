@@ -78,10 +78,12 @@ class ControllerSWA(val ctx: SwaMainActivity?) : AppCompatActivity() {
                             weatherFromJO["icon"] as String
                     )
 
-                    val windObj = Wind (
-                            windFromJO["speed"] as Double,
-                            windFromJO["deg"] as Int   // (windFromJO["deg"] as Int).toDouble()
-                    )
+                    var windObj: Wind
+
+                    if (windFromJO.length() == 1)
+                        windObj = Wind(windFromJO["speed"] as Double)
+                    else
+                        windObj = Wind (windFromJO["speed"] as Double, windFromJO["deg"] as Int)
 
                     val sysObj = Sys (
                             sysFromJO["type"] as Int,
@@ -111,7 +113,10 @@ class ControllerSWA(val ctx: SwaMainActivity?) : AppCompatActivity() {
                     ctx.weatherDescription!!.text = weatherObj.main + ": " + weatherObj.description
                     ctx.pressure!!.text = mainObj.getPressure().toString() + " hpa"    // " mBar"
                     ctx.humidity!!.text = mainObj.humidity.toString() + "%"
-                    ctx.wind!!.text = windObj.speed.toString() + " km/h - " + degToCompass(windObj.getDeg() as Int) + " (" + windObj.getDeg().toString() + ")"
+                    if (windObj.getDeg() != null)
+                        ctx.wind!!.text = windObj.speed.toString() + " km/h - " + degToCompass(windObj.getDeg() as Int) + " (" + windObj.getDeg().toString() + ")"
+                    else
+                        ctx.wind!!.text = windObj.speed.toString() + " km/h"
                     ctx.sunrise!!.text = convertTime(sysObj.sunrise.toLong()).substring(11)
                     ctx.sunset!!.text = convertTime(sysObj.sunset.toLong()).substring(11)
                 },
