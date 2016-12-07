@@ -82,7 +82,7 @@ class SwaMainActivity : AppCompatActivity() {
 
         when (id) {
             R.id.refreshButton -> {
-                //do REFRESH
+                controller.owmServerRequestWeatherByCityCode(CITY_ID_LISBON)
                 return true
             }
 
