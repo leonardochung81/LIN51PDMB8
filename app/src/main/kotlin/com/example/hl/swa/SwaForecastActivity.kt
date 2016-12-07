@@ -1,16 +1,18 @@
 package com.example.hl.swa
 
-import android.app.ListActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 
 
-class SwaForecastActivity : ListActivity() {
+class SwaForecastActivity : AppCompatActivity() {
 
     private val controller = ControllerSWA(null, this)
     private val KEY_CITY_ID = "CityId"
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
         setContentView(R.layout.activity_forecast)
 
         val extras = intent.extras
