@@ -12,7 +12,7 @@
     tools:context="com.example.hl.swa.SwaMainActivity">
 
     <TextView
-        android:text="Humidity"
+        android:text="@string/humidity_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/labelHumidity"
@@ -21,7 +21,7 @@
         android:layout_marginTop="10dp"/>
 
     <TextView
-        android:text="Wind"
+        android:text="@string/wind_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/labelWind"
@@ -30,7 +30,7 @@
         android:layout_marginTop="11dp"/>
 
     <TextView
-        android:text="Sunrise"
+        android:text="@string/sunrise_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/labelSunrise"
@@ -39,7 +39,7 @@
         android:layout_marginTop="12dp"/>
 
     <TextView
-        android:text="Sunset"
+        android:text="@string/sunset_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/labelSunset"
@@ -119,20 +119,12 @@
         android:layout_alignParentEnd="true"/>
 
     <TextView
-        android:text="Pressure"
-        android:layout_width="wrap_content"
+        android:text="@string/pressure_label"
         android:layout_height="wrap_content"
         android:id="@+id/labelPressure"
         android:layout_centerVertical="true"
-        android:layout_alignStart="@+id/weatherIcon"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/pressure"
-        android:layout_marginStart="20dp"
-        android:layout_above="@+id/labelHumidity"
-        android:layout_toEndOf="@+id/labelHumidity"/>
+        android:layout_alignStart="@+id/weatherIcon"
+        android:layout_width="wrap_content" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -161,5 +153,12 @@
         android:textAlignment="textStart"
         android:layout_alignBottom="@+id/weatherIcon"
         android:layout_alignStart="@+id/tempMaxMin"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/pressure"
+        android:layout_above="@+id/labelHumidity"
+        android:layout_toEndOf="@+id/weatherIcon" />
 
 </RelativeLayout>

@@ -3,4 +3,9 @@
     <string name="refresh_button">Actualizar</string>
     <string name="about_button">Sobre</string>
     <string name="forecast_button">Previsão</string>
+    <string name="pressure_label">Pressão</string>
+    <string name="humidity_label">Humidade</string>
+    <string name="wind_label">Vento</string>
+    <string name="sunrise_label">Nascer do Sol</string>
+    <string name="sunset_label">Por do Sol</string>
 </resources>
