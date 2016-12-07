@@ -82,13 +82,12 @@ class SwaMainActivity : AppCompatActivity() {
 
         when (id) {
             R.id.refreshButton -> {
-                //do REFRESH
-                return true
+                controller.owmServerRequestWeatherByCityCode(CITY_ID_LISBON)
             }
 
             R.id.aboutButton -> {
-                //show ABOUT
-                return true
+                intent = Intent(this, AboutActivity::class.java)
+                startActivity(intent)
             }
         }
 

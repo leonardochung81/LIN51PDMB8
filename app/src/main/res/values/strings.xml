@@ -3,4 +3,9 @@
     <string name="refresh_button">Refresh</string>
     <string name="about_button">About</string>
     <string name="forecast_button">Forecast</string>
+    <string name="pressure_label">Pressure</string>
+    <string name="humidity_label">Humidity</string>
+    <string name="wind_label">Wind</string>
+    <string name="sunrise_label">Sunrise</string>
+    <string name="sunset_label">Sunset</string>
 </resources>
