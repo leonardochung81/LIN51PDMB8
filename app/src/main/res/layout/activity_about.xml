@@ -10,4 +10,10 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.hl.swa.AboutActivity">
 
+    <TextView
+        android:text="Autores:\nGrupo 8\nLeonardo Chung Nº26183\nHugo Ressurreição Nº27593\nFonte de dados OpenWeatherMap"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:id="@+id/aboutText" />
 </RelativeLayout>

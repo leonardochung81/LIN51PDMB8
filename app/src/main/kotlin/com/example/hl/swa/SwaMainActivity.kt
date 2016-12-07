@@ -1,6 +1,7 @@
 package com.example.hl.swa
 
 import android.content.Context
+import android.content.Intent
 import android.net.ConnectivityManager
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -83,12 +84,11 @@ class SwaMainActivity : AppCompatActivity() {
         when (id) {
             R.id.refreshButton -> {
                 controller.owmServerRequestWeatherByCityCode(CITY_ID_LISBON)
-                return true
             }
 
             R.id.aboutButton -> {
-                //show ABOUT
-                return true
+                intent = Intent(this, AboutActivity::class.java)
+                startActivity(intent)
             }
         }
 
