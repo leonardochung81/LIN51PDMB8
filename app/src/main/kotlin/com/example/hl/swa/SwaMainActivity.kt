@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_swa_main.*
 
 class SwaMainActivity : AppCompatActivity() {
@@ -41,11 +42,13 @@ class SwaMainActivity : AppCompatActivity() {
 
         // forecast BUTTON TODO
         forecastButton!!.setOnClickListener {
-            val intentSwa: Intent = Intent(this@SwaMainActivity, SwaForecastActivity::class.java)
+            if (isNetworkAvailable()) {
+                val intentSwa: Intent = Intent(this@SwaMainActivity, SwaForecastActivity::class.java)
 
-            intentSwa.putExtra(KEY_CITY_ID, CITY_ID_LISBON)
+                intentSwa.putExtra(KEY_CITY_ID, CITY_ID_LISBON)
 
-            startActivity(intentSwa)
+                startActivity(intentSwa)
+            }
         }
 
         if (savedInstanceState != null) {   // se tiver info no bundle
@@ -61,6 +64,7 @@ class SwaMainActivity : AppCompatActivity() {
 
 
             } else {    // verificar se há dados na estrutura
+                toastMsg(resources.getString(R.string.network_unavailable))
                 // se SIM load de dados
 
 
@@ -82,7 +86,10 @@ class SwaMainActivity : AppCompatActivity() {
 
         when (id) {
             R.id.refreshButton -> {
-                controller.owmServerRequestWeatherByCityCode(CITY_ID_LISBON)
+                if (isNetworkAvailable())
+                    controller.owmServerRequestWeatherByCityCode(CITY_ID_LISBON)
+                else
+                    toastMsg(resources.getString(R.string.network_unavailable))
             }
 
             R.id.aboutButton -> {
@@ -94,7 +101,7 @@ class SwaMainActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-
+    fun Context.toastMsg(message: CharSequence) = Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
 
 
 

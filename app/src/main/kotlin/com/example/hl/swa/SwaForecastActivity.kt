@@ -25,6 +25,26 @@ class SwaForecastActivity : AppCompatActivity() {
             println("No City!!")
         else
             println("City: " + cityId)
+
+        if (savedInstanceState != null) {   // se tiver info no bundle
+
+
+        } else {    // se não tiver info no bundle
+            // ver no sharedPreferences se tem info
+            // ...
+
+//            if (controller.isNetworkAvailable() /*&& passou1h?*/) {
+//                Log.v(TAG, createLogMessage("makeRequest"))
+                controller.owmServerRequestForecastByCityCode(cityId)
+//            } else {    // verificar se há dados na estrutura
+                // se SIM load de dados
+
+
+
+                // se NÃO não faz nada e avisa que não há conexão
+
+
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
