@@ -8,4 +8,5 @@
     <string name="wind_label">Wind</string>
     <string name="sunrise_label">Sunrise</string>
     <string name="sunset_label">Sunset</string>
+    <string name="network_unavailable">NETWORK UNAVAILABLE</string>
 </resources>

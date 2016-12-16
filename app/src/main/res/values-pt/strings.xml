@@ -8,4 +8,5 @@
     <string name="wind_label">Vento</string>
     <string name="sunrise_label">Nascer do Sol</string>
     <string name="sunset_label">Por do Sol</string>
+    <string name="network_unavailable">REDE INDISPONÍVEL</string>
 </resources>
