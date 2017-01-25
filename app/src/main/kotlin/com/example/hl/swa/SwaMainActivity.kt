@@ -14,7 +14,7 @@ import kotlinx.android.synthetic.main.activity_swa_main.*
 class SwaMainActivity : AppCompatActivity() {
 
     // private ListView presentationListView;
-
+    // Entrega tag YAWA3
     private val TAG = javaClass.simpleName
     private val controller = ControllerSWA(this)
 
